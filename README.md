@@ -1,3 +1,6 @@
+Set.*Format系メソッドは複数の値を入れる事が出来ないバグがあるかも
+
+
 ``` go
 import (
   "github.com/Go-Go-LAND/gol"
@@ -118,7 +121,6 @@ func Sample() error {
 var resultList []User{}
 
 table := User{}
-table := UserDetail{}
 query := tx.Query()
 query.SetTable(&table)
 query.SetSelectAll(&table)
@@ -252,11 +254,15 @@ if err != nil {
 # queryType
 
 # table
+
 |method|sql|
+|---|---|
 |SetTable(tablePtr interface{})|FROM tablePtr|
 |SetTableAs(tablePtr interface{}, tableAs string)|FROM tablePtr as tableAs|
 
 # join
+|method|sql|
+|---|---|
 |SetJoin(tablePtr interface{}, columnPtr interface{}, whereColumnPtr interface{})|JOIN tablePtr ON tablePtr = whereColumnPtr|
 |SetJoinAs(tablePtr interface{}, tableAs string, columnPtr interface{}, whereColumnPtr interface{})|JOIN tablePtr ON columnPtr = whereColumnPtr|
 |SetJoinLeft(tablePtr interface{}, columnPtr interface{}, whereColumnPtr interface{})|LEFT JOIN tablePtr ON columnPtr = whereColumnPtr|
@@ -270,6 +276,8 @@ SetJoinWhere.+ は SetWhere.+ Join-On句の中に書かれるwhere句でほぼ�
 
 
 # select
+|method|sql|
+|---|---|
 |SetSelectString(str string)|SELECT str|
 |SetSelectStringAs(str string, as string)|SELECT str AS as|
 |SetSelectFormat(format string, columnPtr interface{})|SELECT format AS as|
@@ -280,10 +288,14 @@ SetJoinWhere.+ は SetWhere.+ Join-On句の中に書かれるwhere句でほぼ�
 
 
 # set
+|method|sql|
+|---|---|
 |SetSet(columnPtr interface{}, value interface{})|SET columnPtr = value|
 
 
 # insert into
+|method|sql|
+|---|---|
 |SetValuesColumn(columnPtrList ...interface{})|INTO ? (columnPtrList...)|
 |SetValues(valueList ...interface{})|VALUES (valueList...)|
 
@@ -291,6 +303,8 @@ SetValuesClear() is values clear
 
 
 # where
+|method|sql|
+|---|---|
 |SetWhereString(str string, valueList ...interface{})|WHERE [and] columnPtr < ?|
 |SetWhereFormat(format string, columnPtr interface{}, valueList ...interface{})|WHERE [and] columnPtr < ?|
 |SetWhereIs(columnPtr interface{}, value interface{})|WHERE [and] columnPtr = ?|
@@ -325,6 +339,8 @@ SetValuesClear() is values clear
 
 
 # group by
+|method|sql|
+|---|---|
 |SetGroupBy(columnPtr interface{})|GROUP BY columnPtr|
 |SetGroupByString(str string)|GROUP BY str|
 |SetGroupByFormat(format string, columnPtr interface{})|GROUP BY format|
@@ -335,6 +351,8 @@ SetHavingはHavingでSetWhere系とほぼ同じようなメソッドと動作
 
 
 # order by
+|method|sql|
+|---|---|
 |SetOrderBy(columnPtr interface{})|ORDER BY columnPtr|
 |SetOrderByAsc(columnPtr interface{})|ORDER BY columnPtr|
 |SetOrderByAscString(str string)|ORDER BY str|
@@ -345,9 +363,13 @@ SetHavingはHavingでSetWhere系とほぼ同じようなメソッドと動作
 
 
 # limit
+|method|sql|
+|---|---|
 |SetLimit(num int)|LIMIT num|
 
 # offset
+|method|sql|
+|---|---|
 |SetOffset(num int)|OFFSET num|
 
 
