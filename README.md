@@ -122,6 +122,7 @@ var resultList []User{}
 
 table := User{}
 query := tx.Query()
+// query := db.Query()
 query.SetTable(&table)
 query.SetSelectAll(&table)
 query.SetWhereIs(&table.Id, data.Id)
@@ -136,6 +137,7 @@ if err != nil {
 var resultList []map[string]interface{}
 table := User{}
 query := tx.Query()
+// query := db.Query()
 query.SetTable(&table)
 query.SetSelectAll(&table)
 query.SetWhereIs(&table.Id, data.Id)
@@ -155,12 +157,13 @@ var resultList []struct{
 table := User{}
 tableDetail := UserDetail{}
 query := tx.Query()
+// query := db.Query()
 query.SetTable(&table)
 query.SetJoin(&tableDetail, &tableDetail.UserId, &table.Id)
 query.SetSelectAll(&table)
 query.SetSelect(
-  &table.Mail,
-  &table.Name,
+  &tableDetail.Mail,
+  &tableDetail.Name,
 )
 query.SetWhereIs(&table.Id, data.Id)
 err = query.Select(&resultList)
